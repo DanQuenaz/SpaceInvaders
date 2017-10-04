@@ -1,0 +1,12 @@
+-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections
+-I C:\Users\Aluno\Documents\DDKJ\SpaceInvaders\RTE
+-I C:\Users\Aluno\Documents\DDKJ\SpaceInvaders\RTE\Device\STM32F107VC
+-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\Driver\Include
+-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\Include
+-I C:\Keil_v5\ARM\PACK\Keil\MDK-Middleware\7.1.0\Board
+-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Boards\Keil\MCBSTM32C\Common
+-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include
+-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\StdPeriph_Driver\inc
+-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\RTE_Driver
+-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F10X_CL
+-o .\objects\buttons_mcbstm32c.o --omf_browse .\objects\buttons_mcbstm32c.crf --depend .\objects\buttons_mcbstm32c.d "C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Boards\Keil\MCBSTM32C\Common\Buttons_MCBSTM32C.c"

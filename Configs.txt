@@ -1,0 +1,48 @@
+RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOE, ENABLE);
+	gpioInit.GPIO_Mode = GPIO_Mode_Out_PP;
+	gpioInit.GPIO_Speed = GPIO_Speed_50MHz;
+	gpioInit.GPIO_Pin = (GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11);
+	GPIO_Init(GPIOE, &gpioInit);
+
+
+
+	timOCInit.TIM_OCMode = TIM_OCMode_Timing;
+	timOCInit.TIM_OCPolarity = TIM_OCPolarity_High;
+	timOCInit.TIM_OutputState = TIM_OutputState_Enable;
+	timOCInit.TIM_Pulse = 500;
+	TIM_OC2Init(TIM4, &timOCInit);
+	TIM_OC2PreloadConfig(TIM4, TIM_OCPreload_Disable);
+	
+	timOCInit.TIM_OCMode = TIM_OCMode_Timing;
+	timOCInit.TIM_OCPolarity = TIM_OCPolarity_High;
+	timOCInit.TIM_OutputState = TIM_OutputState_Enable;
+	timOCInit.TIM_Pulse = 250;
+	TIM_OC3Init(TIM4, &timOCInit);
+	TIM_OC3PreloadConfig(TIM4, TIM_OCPreload_Disable);
+	
+	timOCInit.TIM_OCMode = TIM_OCMode_Timing;
+	timOCInit.TIM_OCPolarity = TIM_OCPolarity_High;
+	timOCInit.TIM_OutputState = TIM_OutputState_Enable;
+	timOCInit.TIM_Pulse = 125;
+	TIM_OC4Init(TIM4, &timOCInit);
+	TIM_OC4PreloadConfig(TIM4, TIM_OCPreload_Disable);
+
+
+if(TIM_GetITStatus(TIM4, TIM_IT_CC2) == SET){
+		TIM_ClearITPendingBit(TIM4, TIM_IT_CC2);
+		t2 = TIM_GetCapture2(TIM4);
+		TIM_SetCompare2(TIM4, t2+500);
+		GPIO_WriteBit(GPIOE,(GPIO_Pin_9 ), (BitAction)(1-GPIO_ReadOutputDataBit(GPIOE, GPIO_Pin_9) ));
+	}
+	if(TIM_GetITStatus(TIM4, TIM_IT_CC3) == SET){
+		TIM_ClearITPendingBit(TIM4, TIM_IT_CC3);
+		t3 = TIM_GetCapture3(TIM4);
+		TIM_SetCompare3(TIM4, t3+250);
+		GPIO_WriteBit(GPIOE,(GPIO_Pin_10 ), (BitAction)(1-GPIO_ReadOutputDataBit(GPIOE, GPIO_Pin_10) ));
+	}
+	if(TIM_GetITStatus(TIM4, TIM_IT_CC4) == SET){
+		TIM_ClearITPendingBit(TIM4, TIM_IT_CC4);
+		t4 = TIM_GetCapture4(TIM4);
+		TIM_SetCompare4(TIM4, t4+125);
+		GPIO_WriteBit(GPIOE,(GPIO_Pin_11 ), (BitAction)(1-GPIO_ReadOutputDataBit(GPIOE, GPIO_Pin_11) ));
+	}
