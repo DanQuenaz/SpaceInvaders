@@ -1,4 +1,6 @@
-
+/*
+Autor: Dan Quenaz M. S. Pimentel
+*/
 #include "environment.h"
 
 
